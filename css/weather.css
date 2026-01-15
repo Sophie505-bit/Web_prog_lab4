@@ -1,0 +1,110 @@
+/* === карточки погоды === */
+
+.weather-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.weather-card {
+    background: var(--weather-card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 24px;
+    text-align: center;
+    transition: var(--transition);
+    color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.weather-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.weather-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+}
+
+.weather-card:hover::before {
+    opacity: 1;
+}
+
+.weather-card.today {
+    background: linear-gradient(135deg, var(--today-gradient-start), var(--today-gradient-end));
+    color: var(--today-text);
+    border-color: transparent;
+    box-shadow: 0 10px 40px rgba(79, 134, 247, 0.3);
+}
+
+.weather-card.today::before {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.weather-card .day-name {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.weather-card .date {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.weather-card .weather-icon {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.weather-card .temperature {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+}
+
+.weather-card .temp-range {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.weather-card .weather-desc {
+    font-size: 0.9rem;
+    margin-top: 12px;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.weather-card .weather-details {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(128, 128, 128, 0.2);
+    font-size: 0.85rem;
+}
+
+.weather-detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.weather-detail-item span:last-child {
+    font-weight: 600;
+}
