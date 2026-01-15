@@ -1,0 +1,263 @@
+/* === компоненты === */
+
+.btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    box-shadow: 0 6px 20px rgba(79, 134, 247, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(79, 134, 247, 0.4);
+}
+
+.btn-refresh {
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+    color: white;
+    box-shadow: 0 6px 20px rgba(56, 178, 172, 0.3);
+}
+
+.btn-refresh:hover:not(:disabled) {
+    background: linear-gradient(135deg, #319795, var(--accent-color));
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(56, 178, 172, 0.4);
+}
+
+.btn-refresh.loading .refresh-icon {
+    animation: spin 1s linear infinite;
+}
+
+.btn-icon {
+    padding: 14px;
+    background: var(--card-bg-secondary);
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    min-width: 52px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-icon:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-3px) rotate(15deg);
+    box-shadow: 0 8px 25px rgba(79, 134, 247, 0.4);
+}
+
+.btn-reset {
+    padding: 14px;
+    background: linear-gradient(135deg, var(--danger-color), #e74c3c);
+    color: white;
+    font-size: 1.1rem;
+    min-width: 52px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+}
+
+.btn-reset:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(220, 53, 69, 0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--danger-color), #e74c3c);
+    color: white;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+}
+
+.btn-danger:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 24px;
+    flex: 1;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid var(--input-border);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 400;
+    transition: var(--transition-fast);
+    background: var(--input-bg);
+    color: var(--text-primary);
+}
+
+.input-wrapper input::placeholder {
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(79, 134, 247, 0.15);
+    transform: translateY(-2px);
+}
+
+.error-message {
+    display: block;
+    color: var(--danger-color);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-top: 10px;
+    text-align: left;
+    min-height: 22px;
+}
+
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--primary-color);
+    border-top: none;
+    border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
+    max-height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 99999999;
+    display: none;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+}
+
+.suggestions-list.active {
+    display: block;
+}
+
+.suggestion-item {
+    padding: 14px 20px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background: linear-gradient(90deg, rgba(79, 134, 247, 0.15), transparent);
+    padding-left: 25px;
+}
+
+.suggestion-item .city-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.suggestion-item .city-country {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: right;
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+.no-results {
+    padding: 20px;
+    color: var(--text-secondary);
+    text-align: center;
+    font-style: italic;
+    background: var(--card-bg);
+}
+
+.loading-state,
+.error-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-secondary);
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 24px;
+}
+
+.loading-state p,
+.error-state p {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.error-state {
+    color: var(--danger-color);
+}
+
+.error-state .error-icon {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 1.1rem;
+}
