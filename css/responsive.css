@@ -1,0 +1,125 @@
+/* === адаптивность === */
+
+@media (max-width: 768px) {
+    .app-container {
+        padding: 12px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 24px;
+        text-align: center;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .header h1::after {
+        left: 20%;
+        width: 60%;
+    }
+
+    .header-controls {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .weather-section,
+    .add-city-section,
+    .additional-cities {
+        padding: 20px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .add-city-form {
+        flex-direction: column;
+    }
+
+    .add-city-form .btn {
+        width: 100%;
+        height: auto;
+    }
+
+    .weather-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+    }
+
+    .weather-card {
+        padding: 18px;
+    }
+
+    .weather-card .weather-icon {
+        font-size: 2.75rem;
+    }
+
+    .weather-card .temperature {
+        font-size: 2rem;
+    }
+
+    .modal-content {
+        padding: 32px 24px;
+        margin: 12px;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+
+    .city-block-header {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .btn-icon,
+    .btn-reset {
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .weather-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .weather-card .weather-details {
+        display: none;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .suggestion-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .suggestion-item .city-country {
+        text-align: left;
+    }
+}
+
+@media (min-width: 1400px) {
+    .app-container {
+        max-width: 1400px;
+    }
+
+    .weather-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
